@@ -1,0 +1,20 @@
+name: Java CI with Maven - Test and package
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout depot courant
+        uses: actions/checkout@v4
+        with:
+          repository: '${{ github.repository }}'
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'corretto'
+      - name: Build avec Maven
+        run: mvn -B package
