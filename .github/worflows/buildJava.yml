@@ -1,0 +1,22 @@
+name: Java CI with Maven - Test and package
+
+on:
+  pull_request:
+    branches: [main] # Déclenchement sur pull request vers la branche main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Exécute le job sur la dernière version d'Ubuntu
+
+    steps:
+      - name: Checkout repository # Étape 1 : Cloner le dépôt
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21 (Corretto) # Étape 2 : Configurer Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'corretto'
+
+      - name: Build and test with Maven # Étape 3 : Construire et tester avec Maven
+        run: mvn -B package
