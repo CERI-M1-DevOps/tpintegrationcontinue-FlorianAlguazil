@@ -2,7 +2,8 @@ name: Java CI with Maven - Test and package
 
 on:
   pull_request:
-    branches: [main] # Déclenchement sur pull request vers la branche main
+    branches:
+      - main # Déclenchement sur pull request vers la branche main
 
 jobs:
   build:
