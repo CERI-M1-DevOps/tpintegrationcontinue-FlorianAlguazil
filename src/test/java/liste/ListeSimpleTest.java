@@ -256,4 +256,24 @@ class ListeSimpleTest {
         System.out.println(listeATester);
         assertEquals("ListeSimple(Noeud(4), Noeud(2), Noeud(3), Noeud(1), Noeud(5))", listeATester.toString());
     }
+
+    @Test
+    void echangerMemeNoeud() {
+        listeATester.ajout(1);
+        Noeud r1 = listeATester.tete;
+        listeATester.echanger(r1, r1);
+        // La liste ne devrait pas changer
+        assertEquals("ListeSimple(Noeud(1))", listeATester.toString());
+    }
+
+    @Test
+    void echangerDeuxElementsDansListeDeDeux() {
+        listeATester.ajout(2);
+        Noeud r1 = listeATester.tete;
+        listeATester.ajout(1);
+        Noeud r2 = listeATester.tete;
+        listeATester.echanger(r1, r2);
+        assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
+    }
+
 }
