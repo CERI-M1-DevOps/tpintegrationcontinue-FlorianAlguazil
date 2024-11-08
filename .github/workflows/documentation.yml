@@ -25,7 +25,23 @@ jobs:
       - name: Generate Javadoc
         run: mvn -B javadoc:javadoc  # Utilisation de la commande Maven pour générer la documentation
 
-      # Étape 4 : Déploiement de la documentation sur GitHub Pages
+      # Étape 4 : Configuration de Git
+      - name: Set Git configuration
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+      # Étape 5 : Assurez-vous que la branche gh-pages existe (création si nécessaire)
+      - name: Ensure gh-pages branch exists
+        run: |
+          git checkout --orphan gh-pages || true  # Crée une branche orpheline si 'gh-pages' n'existe pas
+          git rm -rf .  # Supprime tous les fichiers (si nécessaire)
+          echo "Dummy commit" > README.md  # Crée un fichier temporaire
+          git add README.md
+          git commit -m "Initial commit for gh-pages branch"
+          git push origin gh-pages
+
+      # Étape 6 : Déploiement de la documentation sur GitHub Pages
       - name: Deploy Javadoc to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -35,7 +51,7 @@ jobs:
           user_name: 'github-actions'  # Nom de l'utilisateur pour l'engagement
           user_email: 'github-actions@github.com'  # Email de l'utilisateur pour l'engagement
 
-      # (Optionnel) Étape 5 : Téléchargez la documentation générée en tant qu'artefact
+      # (Optionnel) Étape 7 : Téléchargez la documentation générée en tant qu'artefact
       - name: Upload documentation to artifacts (optional)
         uses: actions/upload-artifact@v3
         with:
