@@ -37,7 +37,7 @@ jobs:
       - name: Deploy Javadoc to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # Token GitHub pour l'authentification
+          github_token: ${{ secrets.DOC }}  # Token GitHub pour l'authentification
           publish_dir: ./target/site/apidocs  # Répertoire contenant la documentation générée par Maven
           publish_branch: gh-pages  # Branche où déployer la documentation (gh-pages)
           user_name: 'github-actions'  # Nom de l'utilisateur pour l'engagement
