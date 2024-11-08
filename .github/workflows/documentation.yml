@@ -38,7 +38,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.DOC }}  # Token GitHub pour l'authentification
-          publish_dir: ./target/site/apidocs  # Répertoire contenant la documentation générée par Maven
+          publish_dir: ./target/reports/apidocs  # Répertoire contenant la documentation générée par Maven
           publish_branch: gh-pages  # Branche où déployer la documentation (gh-pages)
           user_name: 'github-actions'  # Nom de l'utilisateur pour l'engagement
           user_email: 'github-actions@github.com'  # Email de l'utilisateur pour l'engagement
