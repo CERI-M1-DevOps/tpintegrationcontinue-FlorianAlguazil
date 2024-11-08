@@ -1,0 +1,30 @@
+name: Documentation Generation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-documentation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'corretto'
+
+      - name: Generate Javadoc
+        run: |
+          mvn javadoc:javadoc
+
+      - name: Upload documentation to artifacts (optional)
+        uses: actions/upload-artifact@v3
+        with:
+          name: documentation
+          path: target/site/apidocs
