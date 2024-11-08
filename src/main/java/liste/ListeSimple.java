@@ -13,6 +13,7 @@ public class ListeSimple {
         size++;
     }
 
+
     public void modifiePremier(Object element, Object nouvelleValeur) {
         Noeud courant = tete;
         while (courant != null && courant.getElement() != element)
